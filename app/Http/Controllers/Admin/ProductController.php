@@ -30,18 +30,20 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'description' => 'nullable',
+            'name'          => 'required',
+            'description'   => 'nullable',
+            'price'         => 'nullable|min:0',
             'image_paths.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required|in:0,1',
-            'category_id' => 'required|exists:categories,id',
+            'status'        => 'required|in:0,1',
+            'category_id'   => 'required|exists:categories,id',
         ]);
         try {
             $product = Product::create([
-                'name' => $request->name,
+                'name'        => $request->name,
                 'description' => $request->description,
                 'category_id' => $request->category_id,
-                'status' => $request->status,
+                'price'       => $request->price,
+                'status'      => $request->status,
             ]);
 
             if ($request->hasFile('image_paths')) {
@@ -66,14 +68,15 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
-            'name' => 'required',
-            'description' => 'nullable',
+            'name'          => 'required',
+            'description'   => 'nullable',
+            'price'         => 'nullable|min:0',
             'image_paths.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'category_id' => 'required|exists:categories,id',
+            'category_id'   => 'required|exists:categories,id',
         ]);
         try {
             $product->update([
-                'name' => $request->name,
+                'name'        => $request->name,
                 'description' => $request->description,
                 'category_id' => $request->category_id,
             ]);
@@ -98,7 +101,6 @@ class ProductController extends Controller
             foreach ($product->image_paths as $image) {
                 Storage::disk('public')->delete($image);
             }
-
             $product->delete();
 
             return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully');

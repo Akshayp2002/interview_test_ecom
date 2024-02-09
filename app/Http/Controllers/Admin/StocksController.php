@@ -34,7 +34,7 @@ class StocksController extends Controller
         try {
             $request->validate([
                 'product_id' => 'required|exists:products,id',
-                'quantity' => 'required|integer|min:0',
+                'quantity'   => 'required|integer|min:0',
             ]);
 
             Stock::create($request->all());
@@ -61,7 +61,7 @@ class StocksController extends Controller
         try {
             $request->validate([
                 'product_id' => 'required|exists:products,id',
-                'quantity' => 'required|integer|min:0',
+                'quantity'   => 'required|integer|min:0',
             ]);
 
             $stock = Stock::findOrFail($id);

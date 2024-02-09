@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-                <a class="admin-info" href="{{ route('logout') }}"><span>Logout  </span>  <i class='bx bx-log-out'></i></a>
+            <a class="admin-info" href="{{ route('logout') }}"><span>Logout </span> <i class='bx bx-log-out'></i></a>
 
         </div>
     </div>

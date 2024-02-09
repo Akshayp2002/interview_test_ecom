@@ -8,14 +8,12 @@
                 <thead>
                     <tr>
                         <th scope="col">Category Name</th>
-                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($categories as $items)
                         <tr>
                             <td class="m-2">{{ $items->name }}</td>
-                            <td class="m-2">edit</td>
                         </tr>
                     @endforeach
                 </tbody>

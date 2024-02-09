@@ -9,15 +9,17 @@
                     <tr>
                         <th scope="col">Products Name</th>
                         <th scope="col">Description</th>
+                        <th scope="col">Price</th>
                         <th scope="col">Category</th>
-                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($products as $items)
                         <tr>
                             <td class="m-2">{{ $items->name }}</td>
-                            <td class="m-2">edit</td>
+                            <td class="m-2">{{ $items->description }}</td>
+                            <td class="m-2">{{ $items->price }}</td>
+                            <td class="m-2">{{ $items->category->name }}</td>
                         </tr>
                     @endforeach
                 </tbody>

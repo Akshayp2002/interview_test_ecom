@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('image_path')->nullable();
+            $table->integer('price')->nullable();
             $table->foreignId('category_id')->constrained('categories');
             $table->tinyInteger('status')->default(1)->comment('1 - Active , 0 - In Active');
             $table->timestamps();

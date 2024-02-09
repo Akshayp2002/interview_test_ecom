@@ -4,7 +4,8 @@
         <legend>Category</legend>
         <div class="card">
             <div class="card-body">
-                <form action="{{ isset($stock->id) ? route('admin.stocks.update', $stock->id) : route('admin.stocks.store') }}"
+                <form
+                    action="{{ isset($stock->id) ? route('admin.stocks.update', $stock->id) : route('admin.stocks.store') }}"
                     method="post">
                     @isset($stock->id)
                         @method('put')

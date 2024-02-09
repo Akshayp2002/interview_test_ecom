@@ -30,6 +30,15 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="name" class="form-label">Product Price:</label>
+                        <input type="text" class="form-control" id="name" name="price"
+                            value="{{ old('price', $product->price ?? '') }}" required>
+                        @error('price')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
                         <label for="category_id" class="form-label">Industry:</label>
                         <select class="form-control" id="category_id" name="category_id" required>
                             @foreach ($categories as $category)
