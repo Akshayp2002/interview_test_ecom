@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\StocksController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\User\UserController;
 /*
 |--------------------------------------------------------------------------
@@ -47,5 +48,10 @@ Route::prefix('user')->as('user.')->middleware(['auth', 'checkRole:User'])->grou
     Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
     Route::post('add', [CartController::class, 'add'])->name('carts.add');
     Route::get('/goto-cart', [CartController::class, 'goToCart'])->name('goToCart');
+    // Route::post('/payment', [PaymentController::class, 'payment'])->name('payment');
+    // Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
+
+    Route::get('payment', [PaymentController::class, 'index'])->name('index');
+    Route::post('payment', [PaymentController::class, 'store'])->name('store');
 
 });

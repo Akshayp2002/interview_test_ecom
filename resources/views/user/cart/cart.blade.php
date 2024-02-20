@@ -12,7 +12,7 @@
                             <div class="card-body p-4">
                                 <div class="row d-flex justify-content-between align-items-center">
                                     <div class="col-md-5 col-lg-2 col-xl-2">
-                                        <img src="{{ asset('storage/' . json_decode($cartItems->image_path)[0]) }}"
+                                        <img src="{{ isset(json_decode($cartItems->image_path)[0]) ? asset('storage/' . json_decode($cartItems->image_path)[0]) : '' }}"
                                             class="img-fluid rounded-3 cart_image_size" alt="Cotton T-shirt">
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-3">
@@ -30,8 +30,13 @@
                     @endforeach
                     <div class="card">
                         <div class="card-body justify-content-between d-flex">
-                            <button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
-                            <h4>Total Price: ${{ $totalPrice }}</h4>
+                            <form action="{{ route('user.index') }}" method="get">
+                                @csrf
+                                <input type="hidden" name="total_price" value="{{ $totalPrice }}">
+                                <button type="submit" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+                                <h4>Total Price: ${{ $totalPrice }}</h4>
+                            </form>
+
                         </div>
                     </div>
                 @else
